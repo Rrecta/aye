@@ -15,5 +15,17 @@ def run_query(username, phone_num, email):
     user_info_key = user_info.put()
     print("&&&&&&&&&&&&&&&&&&&&&&&&&")
     print(user_info_key)
+    
+class TestQueryHandler(webapp2.RequestHandler):
+    def get(self):
+        run_query("Huuurrrrahhh", "Wooooooot", "coding")    
+        
+
+
+app = webapp2.WSGIApplication([
+    ('/', EnterInfoHandler),
+    ('/showmeme', ShowMemeHandler),
+    ('/testquery', TestQueryHandler),
+
 
 
