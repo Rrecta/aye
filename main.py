@@ -3,6 +3,9 @@ import jinja2
 import os
 from models import Event, CrashCouchUser
 from google.appengine.api import users
+from twilio.rest import Client
+
+
 
 
 the_jinja_env = jinja2.Environment(
@@ -52,6 +55,27 @@ class HomeHandler(webapp2.RequestHandler):
             date=self.request.get('date'),
         )
         event_key = event.put()
+        
+        
+    #twilio code start    
+        account_sid = 'ACeb53036e0973b4d06165a904bb49b64a'
+        auth_token = '36fb7e99c2b6eb9fc699a7f9892e210c'
+        client = Client(account_sid, auth_token)
+        
+        message = client.messages \
+                        .create(
+                             body="hello this crash couch we are watching you and it seems you have not signed up for our website",
+                             from_='+18317848769',
+                             to='+18316822956'
+                         )
+        
+        print(message.sid)
+
+#twilio code end 
+
+
+
+
         self.response.write("Meme created: " + str(event_key) + "<br>")
         self.response.write("<a href='/allmemes'>All memes</a> | ")
         self.response.write("<a href='/usermemes'>My memes</a>")
@@ -128,6 +152,8 @@ class RegistrationHandler(webapp2.RequestHandler):
         
         self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         crash_couch_user.first_name)
+        
+        
         
         
                   
