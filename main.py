@@ -1,7 +1,7 @@
 import webapp2
 import jinja2
 import os
-from models import Meme, CssiUser
+from models import Event, CrashCouchUser
 from google.appengine.api import users
 
 
@@ -22,7 +22,7 @@ def checkLoggedInAndRegistered(request):
     # Check if user is registered
        
     email_address = user.nickname()
-    registered_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+    registered_user = CrashCouchUser.query().filter(CrashCouchUser.email == email_address).get()
     
     if not registered_user:
          request.redirect("/register")
@@ -45,14 +45,14 @@ class HomeHandler(webapp2.RequestHandler):
         
         user = users.get_current_user()
         
-        meme = Meme(
+        event = Event(
             line1=self.request.get('user-first-ln'), 
             line2=self.request.get('user-second-ln'),
             owner=user.nickname(),
             img_choice=self.request.get('meme-type')
         )
-        meme_key = meme.put()
-        self.response.write("Meme created: " + str(meme_key) + "<br>")
+        event_key = event.put()
+        self.response.write("Meme created: " + str(event_key) + "<br>")
         self.response.write("<a href='/allmemes'>All memes</a> | ")
         self.response.write("<a href='/usermemes'>My memes</a>")
         
@@ -64,10 +64,10 @@ class AllMemesHandler(webapp2.RequestHandler):
         
         
         
-        all_memes = Meme.query().fetch()
+        all_events = Event.query().fetch()
         
         the_variable_dict = {
-            "all_memes": all_memes
+            "all_events": all_events
         }
         
         all_memes_template = the_jinja_env.get_template('templates/all_memes.html')
@@ -80,10 +80,10 @@ class UserMemesHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         email_address = user.nickname()
         
-        user_memes = Meme.query().filter(Meme.owner == email_address).fetch()
-        
+        user_events = Event.query().filter(Event.owner == email_address).fetch()
+    
         the_variable_dict = {
-            "user_memes": user_memes
+            "user_events": user_events
         }
         
         user_memes_template = the_jinja_env.get_template('templates/user_memes.html')
@@ -118,16 +118,16 @@ class RegistrationHandler(webapp2.RequestHandler):
         
         #Create a new CSSI User in our database
         
-        cssi_user = CssiUser(
+        crash_couch_user = CrashCouchUser(
             first_name=self.request.get('first_name'), 
             last_name =self.request.get('last_name'), 
             email=user.nickname()
         )
         
-        cssi_user.put()
+        crash_couch_user.put()
         
         self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
-        cssi_user.first_name)
+        crash_couch_user.first_name)
         
                   
     
