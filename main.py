@@ -120,13 +120,15 @@ class RegistrationHandler(webapp2.RequestHandler):
         crash_couch_user = CrashCouchUser(
             first_name=self.request.get('first_name'), 
             last_name =self.request.get('last_name'), 
-            email=user.nickname()
+            email=user.nickname(),
+            friend=self.request.get('friend')
         )
         
         crash_couch_user.put()
         
         self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         crash_couch_user.first_name)
+        
         
                   
     
