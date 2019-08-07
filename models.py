@@ -1,10 +1,9 @@
 from google.appengine.ext import ndb
 
 class Event(ndb.Model):
-    line1 = ndb.StringProperty(required=True)
-    line2 = ndb.StringProperty(required=True)
-    owner = ndb.StringProperty(required=True)
-    img_choice = ndb.StringProperty(required=False)
+    host = ndb.StringProperty(required=True)
+    guest = ndb.StringProperty(required=True)
+    date = ndb.StringProperty(required=True)
 
 class CrashCouchUser(ndb.Model):
   first_name = ndb.StringProperty()

@@ -46,10 +46,9 @@ class HomeHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         
         event = Event(
-            line1=self.request.get('user-first-ln'), 
-            line2=self.request.get('user-second-ln'),
-            owner=user.nickname(),
-            img_choice=self.request.get('meme-type')
+            host=self.request.get('host'), 
+            guest=self.request.get('guest'),
+            date=self.request.get('date'),
         )
         event_key = event.put()
         self.response.write("Meme created: " + str(event_key) + "<br>")
