@@ -1,0 +1,17 @@
+body{
+    background-color: #FAE3B7
+    
+}
+
+.title{
+    font-family: 'Indie Flower', cursive;
+    text-align: center
+}
+
+#oops{
+    font-size: 5rem;
+}
+
+.couchImage {
+    margin-left: 25%;
+}
