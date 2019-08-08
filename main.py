@@ -6,8 +6,6 @@ from google.appengine.api import users
 
 
 
-
-
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
@@ -36,8 +34,12 @@ def checkLoggedInAndRegistered(request):
     
 
 class HomeHandler(webapp2.RequestHandler):
+    
+    send = True
+    
     def get(self):  
         checkLoggedInAndRegistered(self)
+        
         
         the_variable_dict = {
             "logout_url":  users.create_logout_url('/')
@@ -60,7 +62,9 @@ class HomeHandler(webapp2.RequestHandler):
         event_key = event.put()
         
 
-
+        
+        
+            
 
 
 
