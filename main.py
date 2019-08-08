@@ -3,6 +3,8 @@ import jinja2
 import os
 from models import Event, CrashCouchUser
 from google.appengine.api import users
+import twilio
+from twilio.rest import Client
 
 
 
@@ -11,15 +13,28 @@ the_jinja_env = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
     
-
+def send_sms():
+    account_sid = 'ACeb53036e0973b4d06165a904bb49b64a'
+    auth_token = '36fb7e99c2b6eb9fc699a7f9892e210c'
+    client = Client(account_sid, auth_token)
+                
+    message = client.messages \
+                    .create(
+                        body="hello this crash couch we are watching you and it seems you have not signed up for our website yes sir",
+                        from_='+18317848769',
+                        to='+18317741358'
+                                 )
+    print(message.sid)
 
 
 def checkLoggedInAndRegistered(request):
     # Check if user is logged in
+    print("in checkLoggedInAndRegistered")
     
     user = users.get_current_user()
         
     if not user: 
+        print("User not logged in")
         request.redirect("/login")
         return
     
@@ -29,17 +44,19 @@ def checkLoggedInAndRegistered(request):
     registered_user = CrashCouchUser.query().filter(CrashCouchUser.email == email_address).get()
     
     if not registered_user:
+         print("user not registered")
          request.redirect("/register")
          return 
     
 
 class HomeHandler(webapp2.RequestHandler):
     
-    send = True
     
-    def get(self):  
+    
+    def get(self): 
+        print("In homeHandler***************************")
         checkLoggedInAndRegistered(self)
-        
+        send_sms()
         
         the_variable_dict = {
             "logout_url":  users.create_logout_url('/')
@@ -120,7 +137,7 @@ class LoginHandler(webapp2.RequestHandler):
 class RegistrationHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        
+        print("in registrationhandler")
         registration_template = the_jinja_env.get_template('templates/registration.html')
         the_variable_dict = {
             "email_address":  user.nickname()
