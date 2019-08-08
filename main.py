@@ -56,7 +56,6 @@ class HomeHandler(webapp2.RequestHandler):
     def get(self): 
         print("In homeHandler***************************")
         checkLoggedInAndRegistered(self)
-        send_sms()
         
         the_variable_dict = {
             "logout_url":  users.create_logout_url('/')
@@ -67,6 +66,8 @@ class HomeHandler(webapp2.RequestHandler):
 
     def post(self):
         checkLoggedInAndRegistered(self)
+        
+        send_sms()
         
         user = users.get_current_user()
         
