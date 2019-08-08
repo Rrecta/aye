@@ -2,32 +2,34 @@
 <html>
   <head>
     <title>Welcome</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+         
   </head>
   <body>
-    <h1>Where you Trynna Crash?</h1>
+    <h1 id="homeTitle">Where you Trynna Crash At Bro?</h1>
+    <br>
     
-    <form method=POST action="/">
+    <form class ="fooForm" method=POST action="/">
       Which Dude?<br>
       <select name="host">
         <option value="pompa">Pompa</option>
       </select>
+      <br>
       <br>
       
       When Foo?<br>
      <input type="text" name="guest" value="">
      <br>
      
-     <br> <br>
-     
-     
        
       
       <input type="submit" value="Create">
     </form>
     
-    <br> <br>
-    
-    <b> <a href="{{logout_url}}">Log out</a></b>
+    <br>
+    <br>
+    <b id="logOutHome"> <a  href="{{logout_url}}">Log out</a></b>
     
   </body>
 </html>

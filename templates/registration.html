@@ -1,10 +1,21 @@
 <html>
     <head>
-        
+         <link rel="stylesheet" href="/static/style.css">
+         <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
     </head>
     <body>
-        Welcome to our site, {{email_address}}!  Please sign up! <br>
+        <div class="regTitle">
+        <h1>Welcome to Crash Couch</h1>
+        <br>
+        <div class="regCouch">
+            <img id="regCouchImage" src="https://doyouremember.com/wp-content/uploads/2017/09/Beavis-and-Butthead.jpg"></img>
+        </div>
+        <p id ="email">
+        {{email_address}}!  Please sign up!  
         
+        </p>
+        </div>
+        <div class="regForm">
         <form method="post" action="/register">
         <br>
         First name: <input type="text" name="first_name">
@@ -13,5 +24,6 @@
         <br>
         <input type="submit">
         </form>
+        </div>
     </body>
 </html>

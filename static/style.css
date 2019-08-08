@@ -15,3 +15,38 @@ body{
 .couchImage {
     margin-left: 25%;
 }
+.regTitle{
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    font-size: 150%
+}
+.regForm{
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    font-weight: 900;
+    
+}
+#email{
+    font-weight: 900;
+    
+}
+#regCouchImage{
+  width:30%;
+}
+#homeTitle{
+    margin-top: 5%;
+    margin-bottom:7%; 
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    font-weight: 900;
+}
+.fooForm{
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    
+}
+
+#logOutHome{
+    font-family: 'Indie Flower', cursive;
+    margin-left: 48%;
+}
