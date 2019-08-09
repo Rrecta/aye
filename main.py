@@ -86,9 +86,9 @@ class HomeHandler(webapp2.RequestHandler):
 
 
 
-        self.response.write("Meme created: " + str(event_key) + "<br>")
-        self.response.write("<a href='/allmemes'>All memes</a> | ")
-        self.response.write("<a href='/usermemes'>My memes</a>")
+        self.response.write("Event created: " + str(event_key) + "<br>")
+        self.response.write("<a href='/allmemes'>All Events</a> | ")
+        self.response.write("<a href='/usermemes'>My Events</a>")
 
 
 class AllMemesHandler(webapp2.RequestHandler):

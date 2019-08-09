@@ -4,8 +4,9 @@
     <title>A Meme</title>
     <style>
       .meme-div{
-      width: 450px;
-      height: 450px;
+      margin-left: 40%;
+      width: 250px;
+      height: 100px;
       background-size: cover;
       text-align: center;
       position: relative;
@@ -30,11 +31,12 @@
     <link rel="stylesheet" href="/static/style.css">
   </head>
   <body>
+        <h1 style="margin-left: 20%; padding-bottom: 5%">My Events:</h1>
     {% for event in user_events %}
     
-        <div class="meme-div" style="background: black;">
-          <h2 id="line1">{{event.host}}</h2>
-          <h2 id="line2">{{event.guest}}</h2>
+        <div class="meme-div" style="background: #BD6C75; border: solid white 1px;">
+          <h2 id="line1">Host: {{event.host}}</h2>
+          <h2 id="line2">Date: {{event.guest}}</h2>
         </div>
         <br> <br>
     
